@@ -19,6 +19,13 @@
     flex-direction: column;
     border: 1px black solid;
   }
+  .search-btn{
+    font-size: 30px;
+    border-radius: 20px;
+    width: 200px;
+    background-color: rgb(119, 119, 245);
+    color: white;
+  }
   .city-info{
       display: flex;
       justify-content: flex-start;
