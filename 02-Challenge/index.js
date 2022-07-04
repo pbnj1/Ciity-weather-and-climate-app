@@ -2,11 +2,12 @@ var APIKey = "192cc9401e835e8072b8c75758d96a29"
 var cityInfo;
 var forecastInfo;
 var forecastArr;
-
+let searchHX = [];
 
 $(".search-btn").on("click", function(){
     event.preventDefault();
      citySearch = $("#searchbar").val();
+
      saveCityInfo();
    })
 
@@ -32,9 +33,7 @@ $(".search-btn").on("click", function(){
             localStorage.setItem("cityInfo", JSON.stringify(cityInfo));
             renderInfo();
             fiveDaysave();
-           
-            
-        })
+          })
     }
         
 
@@ -54,14 +53,39 @@ $(".search-btn").on("click", function(){
             $("#humidity").text(cityHumidity)
             $("#name").text(cityName)
             // $("#uv").text(cityUV)
+      
+            console.log(cityName)
+            var search1 = document.createElement('button')
+            $(search1).text(cityName)
+            searchHX.push(JSON.parse(localStorage.getItem("cityInfo")));
+            console.log(searchHX)
+            $(".search-hx").append(search1)
+            $(search1).on("click", function(){
+                renderForecastInfo();
+                renderInfo;
+                console.log("hi")
+            })
+        
             
+            // for ( let i = 0; i < searchHX.length; i++){
+            //     // var searchName = cityInfo.name;
+            //     // console.log(JSON.parse(localStorage.getItem("cityInfo.name")))
+            //     searchHX[i].text(cityName)
+            // }
+
            }
    
-   
+           function renderSearchHX(renderInfo){
+            console.log(cityName)
+            var search1 = document.createElement('button')
+            $(search1).text(cityName)
+            searchHX.push(JSON.parse(localStorage.getItem("cityInfo")));
+            console.log(searchHX)
+            $(".search-hx").append(search1)
 
-          
+           }
 
-     
+
 
            function fiveDaysave(saveCityInfo,){
 
@@ -130,9 +154,6 @@ function renderForecastInfo(){
 
 }
 
-
-
-  
 
 renderInfo();
 renderForecastInfo();
