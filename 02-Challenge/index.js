@@ -99,42 +99,43 @@ $(".search-btn").on("click", function(){
        
       localStorage.setItem("forecastInfo", JSON.stringify(forecastInfo));
      renderForecastInfo();
-    
- 
-function renderForecastInfo(fiveDaysave){
-
-    console.log(forecastInfo)
-    $("#temp0").text("Projected temperature is " + forecastInfo.temp0 + " °F")
-    $("#humidity0").text("Projected humidity is " + forecastInfo.humidity0 )
-    $("#wind0").text("Projected wind speed is " + forecastInfo.wind0 + "MPH" )
- 
-    $("#temp1").text("Projected temperature is " + forecastInfo.temp1 + " °F")
-    $("#humidity1").text("Projected humidity is " + forecastInfo.humidity1  )
-    $("#wind1").text("Projected wind speed is " + forecastInfo.wind1 + "MPH" )
-
-    $("#temp2").text("Projected temperature is " + forecastInfo.temp2 + " °F")
-    $("#humidity2").text("Projected humidity is " + forecastInfo.humidity2 )
-    $("#wind2").text("Projected wind speed is " + forecastInfo.wind2 + "MPH" )
-
-    $("#temp3").text("Projected temperature is " + forecastInfo.temp3 + " °F")
-    $("#humidity3").text("Projected humidity is " + forecastInfo.humidity3 )
-    $("#wind3").text("Projected wind speed is " + forecastInfo.wind3 + "MPH" )
-
-    $("#temp4").text("Projected temperature is " + forecastInfo.temp4 + " °F")
-    $("#humidity4").text("Projected humidity is " + forecastInfo.humidity4 )
-    $("#wind4").text("Projected wind speed is " + forecastInfo.wind4+ "MPH")
-return;
-}
-
-})
+    })
 
 }
+
+ 
+function renderForecastInfo(){
+
+    var populateInfoF = JSON.parse(localStorage.getItem("forecastInfo"));
+   
+    $("#temp0").text("Projected temperature is " + populateInfoF.temp0+ " °F")
+    $("#humidity0").text("Projected humidity is " + populateInfoF.humidity0 )
+    $("#wind0").text("Projected wind speed is " + populateInfoF.wind0 + "MPH" )
+ 
+    $("#temp1").text("Projected temperature is " + populateInfoF.temp1 + " °F")
+    $("#humidity1").text("Projected humidity is " + populateInfoF.humidity1  )
+    $("#wind1").text("Projected wind speed is " + populateInfoF.wind1 + "MPH" )
+
+    $("#temp2").text("Projected temperature is " + populateInfoF.temp2 + " °F")
+    $("#humidity2").text("Projected humidity is " + populateInfoF.humidity2 )
+    $("#wind2").text("Projected wind speed is " + populateInfoF.wind2 + "MPH" )
+
+    $("#temp3").text("Projected temperature is " + populateInfoF.temp3 + " °F")
+    $("#humidity3").text("Projected humidity is " + populateInfoF.humidity3 )
+    $("#wind3").text("Projected wind speed is " + populateInfoF.wind3 + "MPH" )
+
+    $("#temp4").text("Projected temperature is " + populateInfoF.temp4 + " °F")
+    $("#humidity4").text("Projected humidity is " + populateInfoF.humidity4 )
+    $("#wind4").text("Projected wind speed is " + populateInfoF.wind4+ "MPH")
+
+}
+
 
 
   
 
 renderInfo();
-// renderForecastInfo();
+renderForecastInfo();
 
 
 
