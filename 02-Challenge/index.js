@@ -59,7 +59,11 @@ var forecastArr;
 
             //trying to create the search hx here...
             // var searchHxInput = localStorage.getItem("citySearchName")
-           if(searchHX )
+        //    if(searchHX !== null){
+        //     searchRetrieve = searchHX;
+        //    }else{var searchHX = []
+        //     }
+            
             var searchHX = [];
             searchHX.push($("#searchbar").val())
              localStorage.setItem("searchHX", searchHX)
