@@ -112,11 +112,12 @@ var search1 = document.createElement('button')
     
              forecastArr = forecastData.list
 
-             console.log(forecastArr[0].weather[0].icon)
+             var icon = (forecastArr[0].weather[0].icon)
         forecastInfo = {
         temp0: forecastArr[0].main.temp,
         humidity0: forecastArr[0].main.humidity,
         wind0: forecastArr[0].wind.speed,
+        
        
         temp1: forecastArr[1].main.temp,
         humidity1: forecastArr[1].main.humidity,
