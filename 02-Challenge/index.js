@@ -4,14 +4,55 @@ var forecastInfo;
 var forecastArr;
 let searchHX = [];
 
+// var pastSearches = localStorage.getItem('pastSearches')
+
+
+
+// searchHX.push(JSON.parse(localStorage.getItem("cityInfo")));
+// console.log(searchHX)
+// for ( let i = 0; i < searchHX.length; i++){
+//    var search1 = document.createElement('button')
+//    $(search1).text(cityInfo)
+//-> breaks the code  $(".search-hx").append(search1)
+   
+//   }
+
+
+
+
+
+
+// searchHX.push(searchHX)
+
+
+
+//initial search bar funciton
 $(".search-btn").on("click", function(){
     event.preventDefault();
      citySearch = $("#searchbar").val();
 
+     // tried putting the below in to get things to work sooner in the code file.
+     var pastSearches = localStorage.getItem("pastSearches")
+
+     var history = [];
+     
+     history.push(pastSearches)
+     
+     for (let i = 0; i < history.length; i++){
+         var searchHxBTN = document.createElement("button")
+         $(searchHxBTN).text(citySearch)
+     }
+
+
+     //adding 2nd part of TA help here:
+     var usersSearch = citySearch;
+     history.push(usersSearch)
+
+
      saveCityInfo();
    })
 
-
+// function to fetch API info for current city weather data 
    function saveCityInfo(){
 
     var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&appid=" + APIKey + "&current.uvi&units=imperial";
@@ -36,7 +77,7 @@ $(".search-btn").on("click", function(){
           })
     }
         
-
+//function to render the city weather data and display it on the screen
            function renderInfo(){
             
             var date = moment().format('MMMM Do YYYY')
@@ -54,19 +95,52 @@ $(".search-btn").on("click", function(){
             $("#name").text(cityName)
             // $("#uv").text(cityUV)
       
+
+
             console.log(cityName)
-            var search1 = document.createElement('button')
-            $(search1).text(cityName)
             searchHX.push(JSON.parse(localStorage.getItem("cityInfo")));
-            console.log(searchHX)
+            var search1 = document.createElement('button')
             $(".search-hx").append(search1)
-            $(search1).on("click", function(){
-                renderForecastInfo();
-                renderInfo;
-                console.log("hi")
-            })
-        
+            $(search1).text(cityName)
+            console.log("this is the searchHX " + JSON.stringify(searchHX));
+            localStorage.setItem("searchHX", JSON.stringify(searchHX));
             
+          
+        
+            console.log(searchHX)
+            
+           
+        
+            for (let i = 0; i < searchHX.length; i++){
+               
+
+                $(search1).on("click", function(){
+                    renderForecastInfo();
+                    renderInfo;
+                    console.log("inside the onclick function")
+                })
+            }
+
+// get past search history on page load
+// var pastSearches = localStorage.getItem('pastSearches')
+
+// //create array for history
+// var history = []
+
+// // push the past searches into history array
+// history.push(pastSearches)
+
+// // the user searches- take their search and push it to history
+
+// var usersSearch = whatevertheusersearched
+
+// history.push(usersSearch)
+
+// lastly take the history array - for loop through it and display each city accordingly
+
+
+
+
             // for ( let i = 0; i < searchHX.length; i++){
             //     // var searchName = cityInfo.name;
             //     // console.log(JSON.parse(localStorage.getItem("cityInfo.name")))
@@ -75,18 +149,18 @@ $(".search-btn").on("click", function(){
 
            }
    
-           function renderSearchHX(renderInfo){
-            console.log(cityName)
-            var search1 = document.createElement('button')
-            $(search1).text(cityName)
-            searchHX.push(JSON.parse(localStorage.getItem("cityInfo")));
-            console.log(searchHX)
-            $(".search-hx").append(search1)
+        //    function renderSearchHX(renderInfo){
+        //     console.log(cityName)
+        //     var search1 = document.createElement('button')
+        //     $(search1).text(cityName)
+        //     searchHX.push(JSON.parse(localStorage.getItem("cityInfo")));
+        //     console.log(searchHX)
+        //     $(".search-hx").append(search1)
 
-           }
+        //    }
 
 
-
+//function to save five day forecast information with lat and lon passed in from saveCityInfo function
            function fiveDaysave(saveCityInfo,){
 
             var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + cityInfo.lat + "&lon=" + cityInfo.lon + "&appid=" + APIKey + "&current.uvi&units=imperial&cnt=5";
@@ -127,7 +201,7 @@ $(".search-btn").on("click", function(){
 
 }
 
- 
+ //renders the 5 day forecast information on the screen 
 function renderForecastInfo(){
 
     var populateInfoF = JSON.parse(localStorage.getItem("forecastInfo"));
@@ -154,7 +228,7 @@ function renderForecastInfo(){
 
 }
 
-
+//displays the city weather and 5 day info on the screen after refresh 
 renderInfo();
 renderForecastInfo();
 
