@@ -2,7 +2,7 @@ var APIKey = "192cc9401e835e8072b8c75758d96a29"
 var cityInfo;
 var forecastInfo;
 var forecastArr;
-let searchHX = [];
+
 
 
 
@@ -27,11 +27,11 @@ let searchHX = [];
                 // uv: data.main.
             }
 
-            console.log(data)
-            console.log(cityInfo.icon)
-            var citySearchName = cityInfo.name
+            // console.log(data)
+            // console.log(cityInfo.icon)
+            // var citySearchName = cityInfo.name
             // console.log(citySearchName)
-            localStorage.setItem("citySearchName", citySearchName)
+            // localStorage.setItem("citySearchName", citySearchName)
             localStorage.setItem("cityInfo", JSON.stringify(cityInfo));
             renderInfo();
             fiveDaysave();
@@ -58,11 +58,18 @@ let searchHX = [];
       
 
             //trying to create the search hx here...
-            var searchHxInput = localStorage.getItem("citySearchName")
-            searchHX.push(searchHxInput)
-console.log(searchHxInput)
-console.log(searchHX.length)
-console.log(searchHxInput)
+            // var searchHxInput = localStorage.getItem("citySearchName")
+           if(searchHX )
+            var searchHX = [];
+            searchHX.push($("#searchbar").val())
+             localStorage.setItem("searchHX", searchHX)
+            var searchRetrieve = localStorage.getItem("searchHX")
+console.log(searchRetrieve)
+console.log (searchHX)
+
+// console.log(searchStore)
+// console.log(searchHX.length)
+// console.log(searchHxInput)
 // currently creating 2 buttons for a city if it is the second value in the array.  3 if it is the third. 
             
 var search1 = document.createElement('button')
@@ -101,7 +108,7 @@ var search1 = document.createElement('button')
 
 //function to save five day forecast information with lat and lon passed in from saveCityInfo function
            function fiveDaysave(saveCityInfo){
-            console.log(cityInfo.icon)
+            // console.log(cityInfo.icon)
             var forecastURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + cityInfo.lat + "&lon=" + cityInfo.lon + "&appid=" + APIKey + "&current.uvi&units=imperial&cnt=5";
          
             fetch(forecastURL)
@@ -117,7 +124,7 @@ var search1 = document.createElement('button')
         temp0: forecastArr[0].main.temp,
         humidity0: forecastArr[0].main.humidity,
         wind0: forecastArr[0].wind.speed,
-        
+
        
         temp1: forecastArr[1].main.temp,
         humidity1: forecastArr[1].main.humidity,
