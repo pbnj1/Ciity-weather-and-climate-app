@@ -2,8 +2,14 @@ var APIKey = "192cc9401e835e8072b8c75758d96a29"
 var cityInfo;
 var forecastInfo;
 var forecastArr;
+// var storageCheck = if( localStorage )
+var searchRetrieve = JSON.parse(localStorage.getItem("searchHX"))
 
-
+if (searchRetrieve){
+    var searchHX = searchRetrieve
+}else{
+    var searchHX = []
+}
 
 
 // function to fetch API info for current city weather data 
@@ -64,10 +70,10 @@ var forecastArr;
         //    }else{var searchHX = []
         //     }
             
-            var searchHX = [];
+           
             searchHX.push($("#searchbar").val())
-             localStorage.setItem("searchHX", searchHX)
-            var searchRetrieve = localStorage.getItem("searchHX")
+             localStorage.setItem("searchHX", JSON.stringify(searchHX))
+           
 console.log(searchRetrieve)
 console.log (searchHX)
 
