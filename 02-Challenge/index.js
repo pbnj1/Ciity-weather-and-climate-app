@@ -4,13 +4,21 @@ var forecastInfo;
 var forecastArr;
 // var storageCheck = if( localStorage )
 var searchRetrieve = JSON.parse(localStorage.getItem("searchHX"))
-
+localStorage.clear
 if (searchRetrieve){
     var searchHX = searchRetrieve
 }else{
     var searchHX = []
 }
 
+$(".search-btn").on("click", function(event){
+    event.preventDefault();
+     citySearch = $("#searchbar").val();
+     saveCityInfo();
+     renderForecastInfo();
+   
+   })
+  
 
 // function to fetch API info for current city weather data 
    function saveCityInfo(){
@@ -33,20 +41,16 @@ if (searchRetrieve){
                 // uv: data.main.
             }
 
-            // console.log(data)
-            // console.log(cityInfo.icon)
-            // var citySearchName = cityInfo.name
-            // console.log(citySearchName)
-            // localStorage.setItem("citySearchName", citySearchName)
+        
             localStorage.setItem("cityInfo", JSON.stringify(cityInfo));
             renderInfo();
             fiveDaysave();
           })
     }
-       
+
 //function to render the city weather data and display it on the screen
            function renderInfo(){
-            
+          
             var date = moment().format('MMMM Do YYYY')
             var populateInfo = JSON.parse(localStorage.getItem("cityInfo"));
             var cityName = populateInfo.name + "    " + date
@@ -54,7 +58,7 @@ if (searchRetrieve){
             var cityWind = "The current wind speed is " + populateInfo.wind + " MPH"
             var cityHumidity = "The current humidity is " + populateInfo.humidity + "%"
             // var cityUV = "the UV index is " + populateInfo. 
-           
+        
             document.getElementById("temp").innerHTML = populateInfo.temp;
             // $("#temp").text(populateInfo.temp)
             $("#wind").text(cityWind)
@@ -63,25 +67,14 @@ if (searchRetrieve){
             // $("#uv").text(cityUV)
       
 
-            //trying to create the search hx here...
-            // var searchHxInput = localStorage.getItem("citySearchName")
-        //    if(searchHX !== null){
-        //     searchRetrieve = searchHX;
-        //    }else{var searchHX = []
-        //     }
-            
-           
-            searchHX.push($("#searchbar").val())
+        
+            console.log()
+            searchHX.push(cityName)
+            // searchHX.push($("#searchbar").val())
+            console.log(searchHX)
              localStorage.setItem("searchHX", JSON.stringify(searchHX))
            
-console.log(searchRetrieve)
-console.log (searchHX)
 
-// console.log(searchStore)
-// console.log(searchHX.length)
-// console.log(searchHxInput)
-// currently creating 2 buttons for a city if it is the second value in the array.  3 if it is the third. 
-            
 var search1 = document.createElement('button')
                 for( i = 0; i < searchHX.length; i++){
                
@@ -91,15 +84,6 @@ var search1 = document.createElement('button')
 
 
             
-           
-            // searchHX.push(JSON.parse(localStorage.getItem(cityInfo)));
-           
-            // var search1 = document.createElement('button')
-            // $(".search-hx").append(search1)
-            // $(search1).text(cityName)
-            // // console.log("this is the searchHX " + JSON.stringify(searchHX));
-            // localStorage.setItem("searchHX", JSON.stringify(searchHX));
-           
         
        
             $(search1).on("click", function(){
@@ -192,10 +176,4 @@ renderInfo();
 renderForecastInfo();
 
 
-$(".search-btn").on("click", function(event){
-    event.preventDefault();
-     citySearch = $("#searchbar").val();
 
-
-     saveCityInfo();
-   })
