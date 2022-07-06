@@ -115,7 +115,11 @@ function fiveDaysave(saveCityInfo) {
       var icon4 = forecastArr[4].weather[0].icon;
 
       console.log(icon0)
-      document.getElementById("img0").src = "http:openweathermap.org/img/wn/" + icon0 + "@2x.png"
+     document.getElementById("img0").src="http://openweathermap.org/img/wn/" + icon0 + "@2x.png"
+     document.getElementById("img0").src="http://openweathermap.org/img/wn/" + icon0 + "@2x.png"
+     document.getElementById("img0").src="http://openweathermap.org/img/wn/" + icon0 + "@2x.png"
+     document.getElementById("img0").src="http://openweathermap.org/img/wn/" + icon0 + "@2x.png"
+     document.getElementById("img0").src="http://openweathermap.org/img/wn/" + icon0 + "@2x.png"
       //  $("img0").attr("src", http:openweathermap.org/img/wn/ + icon0 + @2x.png)
       // function imgRender(saveCityInfo){
       //     var imgURL =
