@@ -1,122 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-  />
-  <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-    crossorigin="anonymous"
-  />
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="style.css" />
-  <link
-    rel="stylesheet"
-    href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-  />
-   
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"> -->
     <title>Weather App</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    
-    <nav class = "navbar"> <h1> Weather Dashboard</h1></nav>
-  
-    <div class = "parent">
-    
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar"><h1>Weather Dashboard</h1></nav>
+
+    <div class="parent">
+      <div class="search-city">
+        <h2>Search for a City</h2>
+        <input
+          id="searchbar"
+          type="text"
+          name="search"
+          placeholder="Search Cities..."
+        />
+        <button class="search-btn">Search</button>
+      </div>
+      <div class="city-info">
+        <h2 id="name">Your City and Date</h2>
+        <p id="temp">Your Current City Temperature</p>
+        <p id="wind">Your Current City Wind Speed</p>
+        <p id="humidity">Your Current City Humidity</p>
+        <p id="uv">Your Current City UV index</p>
+      </div>
+      <div class="w-100"></div>
+      <div class="search-hx"></div>
+      
+      <div class="five-day">
         
-            <div class="search-city"> 
-                <h2>Search for a City</h2>
-                <input id="searchbar"  type="text" name="search" placeholder="Search Cities..">
-                <button class = "search-btn"> Search </button>
-            </div>
-            <div class ="city-info">
-                <h2 id ="name">Your City and Date</h2>
-                <p id = "temp"> Your Current City Temperature</p>
-                <p id ="wind">Your Current City Wind Speed</p>
-                <p id = "humidity"> Your Current City Humidity </p>
-                <p id ="uv">Your Current City UV index</p>
-            </div>
-            <div class="w-100"></div>
-            <div class="search-hx">
-                <!-- <button class="btn" id = "1"> Search History</button>
-                <button class="btn" id = "2"> Search History</button>
-                <button class="btn" id = "3"> Search History</button>
-                <button class="btn" id = "4"> Search History</button>
-                <button class="btn" id = "5"> Search History</button>
-                <button class="btn" id = "6"> Search History</button>
-                <button class="btn" id = "7"> Search History</button>
-                <button class="btn" id = "8"> Search History</button>    -->
-            </div>
-          <div class="five-day">
-            
-                <div class="card" style="width: 18rem;">
-                    <img id ="img0" src="" class="card-img-top" alt="image coming soon">
-                    <div class="card-body">
-                        <p class="card-text" id ="temp0"> Temperature</p>
-                        <p class="card-text" id ="humidity0"> Humidity</p>
-                        <p class="card-text" id ="wind0"> Wind Speed</p>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img id ="img1" src="" class="card-img-top" alt="image coming soon">
-                    <div class="card-body">
-                        <p class="card-text" id ="temp1"> Temperature</p>
-                        <p class="card-text" id ="humidity1"> Humidity</p>
-                        <p class="card-text" id ="wind1"> Wind Speed</p>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img id ="img2" src="" class="card-img-top" alt="image coming soon">
-                    <div class="card-body">
-                        <p class="card-text" id ="temp2"> Temperature</p>
-                        <p class="card-text" id ="humidity2"> Humidity</p>
-                        <p class="card-text" id ="wind2"> Wind Speed</p>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img id ="img3" src="" class="card-img-top" alt="image coming soon">
-                    <div class="card-body">
-                        <p class="card-text" id ="temp3"> Temperature</p>
-                        <p class="card-text" id ="humidity3"> Humidity</p>
-                        <p class="card-text" id ="wind3"> Wind Speed</p>
-                    </div>
-                </div>
-                <div class="card" style="width: 18rem;">
-                    <img id ="img4"src="" class="card-img-top" alt="image coming soon">
-                    <div class="card-body">
-                        <p class="card-text" id ="temp4"> Temperature</p>
-                        <p class="card-text" id ="humidity4"> Humidity</p>
-                        <p class="card-text" id ="wind4"> Wind Speed</p>
-                    </div>
-                </div>
-            </div>
-
+        <div class="card" style="width: 18rem">
+           
+          <img id="img0" src="" class="card-img-top" alt="Search Your City for image" />
+          <div class="card-body">
+            <p class="card-text" id="temp0">Temperature</p>
+            <p class="card-text" id="humidity0">Humidity</p>
+            <p class="card-text" id="wind0">Wind Speed</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem">
+          <img id="img1" src="" class="card-img-top" alt="Search Your City for image" />
+          <div class="card-body">
+            <p class="card-text" id="temp1">Temperature</p>
+            <p class="card-text" id="humidity1">Humidity</p>
+            <p class="card-text" id="wind1">Wind Speed</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem">
+          <img id="img2" src="" class="card-img-top" alt="Search Your City for image" />
+          <div class="card-body">
+            <p class="card-text" id="temp2">Temperature</p>
+            <p class="card-text" id="humidity2">Humidity</p>
+            <p class="card-text" id="wind2">Wind Speed</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem">
+          <img id="img3" src="" class="card-img-top" alt="Search Your City for image" />
+          <div class="card-body">
+            <p class="card-text" id="temp3">Temperature</p>
+            <p class="card-text" id="humidity3">Humidity</p>
+            <p class="card-text" id="wind3">Wind Speed</p>
+          </div>
+        </div>
+        <div class="card" style="width: 18rem">
+          <img id="img4" src="" class="card-img-top" alt="Search Your City for image" />
+          <div class="card-body">
+            <p class="card-text" id="temp4">Temperature</p>
+            <p class="card-text" id="humidity4">Humidity</p>
+            <p class="card-text" id="wind4">Wind Speed</p>
+          </div>
+        </div>
+      </div>
     </div>
-    
 
-
-
-
-
-    
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="index.js"></script>
-</body>
-
-
+  </body>
 </html>

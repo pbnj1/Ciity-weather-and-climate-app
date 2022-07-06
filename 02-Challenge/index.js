@@ -3,19 +3,38 @@ var cityInfo;
 var forecastInfo;
 var forecastArr;
 var searchRetrieve = JSON.parse(localStorage.getItem("searchHX"));
+// var citySearch ="orlando";
 
+//validation so that if there is already saved data then it will populate the array,
+//if no saved data then the array will be empty
 if (searchRetrieve) {
   var searchHX = searchRetrieve;
 } else {
   var searchHX = [];
 }
 
+//initial search button that will begin to store city search into the array.
 $(".search-btn").on("click", function (event) {
   event.preventDefault();
   citySearch = $("#searchbar").val();
+  //do i need to do a searchHX.push(citySearch) here to try to get rid of my bug where
+  //new users get a bunch of errors bc they dont have anything in local storage?
+  localStorage.setItem("searchHX", JSON.stringify(searchHX));
   saveCityInfo();
   renderForecastInfo();
+  cityValidation(citySearch);
 });
+
+//validation to check that the data that is passed into searchHX matches the data that is in there
+//prevents multiple buttons from being created?
+function cityValidation(city) {
+  for (i = 0; i < searchHX.length; i++) {
+    if (city === searchHX[i]) {
+      return true;
+    }
+  }
+  return false;
+}
 
 // function to fetch API info for current city weather data
 function saveCityInfo() {
@@ -59,7 +78,7 @@ function renderInfo() {
   // var cityUV = "the UV index is " + populateInfo.
 
   document.getElementById("temp").innerHTML = populateInfo.temp;
-  // $("#temp").text(populateInfo.temp)
+  $("#temp").text(cityTemp);
   $("#wind").text(cityWind);
   $("#humidity").text(cityHumidity);
   $("#name").text(cityName);
@@ -68,27 +87,33 @@ function renderInfo() {
   searchHxRender(cityName);
 }
 
+//this function creates the buttons.  I might need to go in and change what is pushed into 
+//searchHX to only include the value put into the search bar, not the cityName data to help fix
+//my bug of new user searches
 function searchHxRender(cityName) {
-  console.log();
+  $(".search-hx").empty();
   searchHX.push(cityName);
   // searchHX.push($("#searchbar").val())
   console.log(searchHX);
-  localStorage.setItem("searchHX", JSON.stringify(searchHX));
 
   // var search1 = document.createElement('button')
-  for (i = 0; i < searchHX.length; i++) {
+  for (let i = 0; i < searchHX.length; i++) {
     var search1 = document.createElement("button");
-    $(search1).text(cityName);
+    $(search1).text(searchHX[i]);
+    $(search1).attr("style", "width: 200px; margin: 5px; border-radius:10px; background-color: rgb(119, 119, 245); color: white; ")
     $(".search-hx").append(search1);
   }
-
+  //trying to set up a click function so that clicking on the searchHX will take that info and put it 
+  //back in the search input area
+  
   $(search1).on("click", function () {
+  
+    $("#searchbar").text("yes");
     renderForecastInfo();
     renderInfo;
     console.log("inside the search HX click function");
   });
 }
-
 
 //function to save five day forecast information with lat and lon passed in from saveCityInfo function
 function fiveDaysave(saveCityInfo) {
@@ -99,7 +124,7 @@ function fiveDaysave(saveCityInfo) {
     cityInfo.lon +
     "&appid=" +
     APIKey +
-    "&current.uvi&units=imperial&cnt=5";
+    "&current.uvi&units=imperial&cnt=20";
 
   fetch(forecastURL)
     .then(function (response) {
@@ -113,19 +138,18 @@ function fiveDaysave(saveCityInfo) {
       var icon2 = forecastArr[2].weather[0].icon;
       var icon3 = forecastArr[3].weather[0].icon;
       var icon4 = forecastArr[4].weather[0].icon;
+     
+      document.getElementById("img0").src =
+        "http://openweathermap.org/img/wn/" + icon0 + "@2x.png";
+      document.getElementById("img1").src =
+        "http://openweathermap.org/img/wn/" + icon1 + "@2x.png";
+      document.getElementById("img2").src =
+        "http://openweathermap.org/img/wn/" + icon2 + "@2x.png";
+      document.getElementById("img3").src =
+        "http://openweathermap.org/img/wn/" + icon3 + "@2x.png";
+      document.getElementById("img4").src =
+        "http://openweathermap.org/img/wn/" + icon4 + "@2x.png";
 
-      console.log(icon0)
-     document.getElementById("img0").src="http://openweathermap.org/img/wn/" + icon0 + "@2x.png"
-     document.getElementById("img0").src="http://openweathermap.org/img/wn/" + icon0 + "@2x.png"
-     document.getElementById("img0").src="http://openweathermap.org/img/wn/" + icon0 + "@2x.png"
-     document.getElementById("img0").src="http://openweathermap.org/img/wn/" + icon0 + "@2x.png"
-     document.getElementById("img0").src="http://openweathermap.org/img/wn/" + icon0 + "@2x.png"
-      //  $("img0").attr("src", http:openweathermap.org/img/wn/ + icon0 + @2x.png)
-      // function imgRender(saveCityInfo){
-      //     var imgURL =
-      //something along the lines of giving each img an id.
-      // then doing $("#img").attr("src", http://openweathermap.org/img/wn/" + icon0 + @2x.png )
-      // will need to create icon0, icon1, icon2, icon3, icon4}
       forecastInfo = {
         temp0: forecastArr[0].main.temp,
         humidity0: forecastArr[0].main.humidity,
@@ -147,7 +171,7 @@ function fiveDaysave(saveCityInfo) {
         humidity4: forecastArr[4].main.humidity,
         wind4: forecastArr[4].wind.speed,
       };
-
+     
       localStorage.setItem("forecastInfo", JSON.stringify(forecastInfo));
       renderForecastInfo();
     });
