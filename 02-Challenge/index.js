@@ -4,19 +4,21 @@ var forecastInfo;
 var forecastArr;
 // var storageCheck = if( localStorage )
 var searchRetrieve = JSON.parse(localStorage.getItem("searchHX"))
-localStorage.clear
+
+
 if (searchRetrieve){
     var searchHX = searchRetrieve
 }else{
     var searchHX = []
 }
-
+console.log(searchHX)
 $(".search-btn").on("click", function(event){
     event.preventDefault();
      citySearch = $("#searchbar").val();
      saveCityInfo();
      renderForecastInfo();
    
+     
    })
   
 
@@ -75,14 +77,19 @@ $(".search-btn").on("click", function(event){
              localStorage.setItem("searchHX", JSON.stringify(searchHX))
            
 
-var search1 = document.createElement('button')
+// var search1 = document.createElement('button')
                 for( i = 0; i < searchHX.length; i++){
-               
+                var search1 = document.createElement('button')
                 $(search1).text(cityName)
                 $(".search-hx").append(search1)
             }
 
 
+            // if (searchRetrieve){
+            //     var searchHX = searchRetrieve
+            // }else{
+            //     var searchHX = []
+            // }
             
         
        
