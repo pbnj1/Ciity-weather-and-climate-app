@@ -39,7 +39,7 @@ function cityValidation(city) {
 // function to fetch API info for current city weather data
 function saveCityInfo() {
   var queryURL =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     citySearch +
     "&appid=" +
     APIKey +
@@ -118,7 +118,7 @@ function searchHxRender(cityName) {
 //function to save five day forecast information with lat and lon passed in from saveCityInfo function
 function fiveDaysave(saveCityInfo) {
   var forecastURL =
-    "http://api.openweathermap.org/data/2.5/forecast?lat=" +
+    "https://api.openweathermap.org/data/2.5/forecast?lat=" +
     cityInfo.lat +
     "&lon=" +
     cityInfo.lon +
